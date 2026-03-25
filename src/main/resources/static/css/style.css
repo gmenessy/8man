@@ -1,0 +1,496 @@
+/* === Reset & Base === */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0f1117;
+    --bg-card: #1a1d27;
+    --bg-card-hover: #1f2233;
+    --text: #e4e6ed;
+    --text-muted: #8b8fa3;
+    --primary: #6366f1;
+    --primary-hover: #818cf8;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --accent-eighth: #e11d48;
+    --border: #2a2d3a;
+    --radius: 12px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* === Header === */
+header {
+    background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+/* === Main === */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* === Views === */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+/* === Cards === */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.description {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* === Forms === */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* === Buttons === */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+/* === Phase Tracker === */
+.phase-tracker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 2rem 0;
+}
+
+.phase-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+    transition: all 0.3s;
+}
+
+.phase-step.active {
+    opacity: 1;
+}
+
+.phase-step.completed {
+    opacity: 1;
+}
+
+.phase-step.completed .phase-icon {
+    background: var(--success);
+    border-color: var(--success);
+}
+
+.phase-step.active .phase-icon {
+    background: var(--primary);
+    border-color: var(--primary);
+    animation: pulse 2s infinite;
+}
+
+.phase-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: var(--bg);
+}
+
+.phase-step span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.phase-step.active span {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.phase-connector {
+    width: 60px;
+    height: 2px;
+    background: var(--border);
+    margin: 0 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+}
+
+/* === Progress Bar === */
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--bg);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+.progress-text {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* === Agents Panel === */
+.agents-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.agent-chip {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+.agent-chip .agent-name {
+    font-weight: 600;
+    display: block;
+}
+
+.agent-chip .agent-role {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.agent-chip.eighth-man {
+    border-color: var(--accent-eighth);
+    background: rgba(225, 29, 72, 0.1);
+}
+
+/* === Results === */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.result-content {
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+.result-card ul,
+.result-card ol {
+    padding-left: 1.5rem;
+}
+
+.result-card li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* === Two Column === */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.pro-card {
+    border-left: 3px solid var(--success);
+}
+
+.pro-card h3 {
+    color: var(--success);
+}
+
+.contra-card {
+    border-left: 3px solid var(--danger);
+}
+
+.contra-card h3 {
+    color: var(--danger);
+}
+
+/* === Eighth Man Card === */
+.eighth-man-card {
+    border-left: 3px solid var(--accent-eighth);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(225, 29, 72, 0.05) 100%);
+}
+
+.eighth-man-card h3 {
+    color: var(--accent-eighth);
+}
+
+/* === Consensus Meter === */
+.consensus-meter {
+    position: relative;
+    width: 100%;
+    height: 32px;
+    background: var(--bg);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.consensus-bar {
+    height: 100%;
+    border-radius: 16px;
+    transition: width 1s ease;
+    background: linear-gradient(90deg, var(--danger), var(--warning), var(--success));
+}
+
+.consensus-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* === Accordion === */
+.accordion-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 1rem;
+    background: var(--bg);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.accordion-header:hover {
+    background: var(--bg-card-hover);
+}
+
+.accordion-header .arrow {
+    transition: transform 0.2s;
+}
+
+.accordion-item.open .accordion-header .arrow {
+    transform: rotate(180deg);
+}
+
+.accordion-body {
+    display: none;
+    padding: 1rem;
+}
+
+.accordion-item.open .accordion-body {
+    display: block;
+}
+
+.agent-response {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.agent-response-header {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.agent-response-header.eighth-man {
+    color: var(--accent-eighth);
+}
+
+.agent-response-content {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    color: var(--text-muted);
+}
+
+/* === Error === */
+.error-card {
+    border-left: 3px solid var(--danger);
+}
+
+.error-card h2 {
+    color: var(--danger);
+}
+
+/* === Footer === */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .phase-tracker {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .phase-connector {
+        display: none;
+    }
+
+    .agents-panel {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    header {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .agents-panel {
+        grid-template-columns: 1fr;
+    }
+}
