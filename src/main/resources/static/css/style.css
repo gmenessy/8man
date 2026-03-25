@@ -94,6 +94,52 @@ main {
     margin-bottom: 1.5rem;
 }
 
+/* === Form Sections === */
+.form-section {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-section legend {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--primary);
+    padding: 0 0.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-section.collapsible .collapsible-content {
+    display: none;
+}
+
+.form-section.collapsible.open .collapsible-content {
+    display: block;
+    margin-top: 1rem;
+}
+
+.collapsible-toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+.collapsible-toggle .toggle-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+    display: inline-block;
+    margin-left: 0.25rem;
+}
+
+.form-section.collapsible.open .toggle-arrow {
+    transform: rotate(180deg);
+}
+
 /* === Forms === */
 .form-group {
     margin-bottom: 1.25rem;
@@ -119,8 +165,22 @@ main {
     transition: border-color 0.2s;
 }
 
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    cursor: pointer;
+}
+
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
     border-color: var(--primary);
 }
@@ -463,7 +523,8 @@ footer {
 
 /* === Responsive === */
 @media (max-width: 768px) {
-    .two-col {
+    .two-col,
+    .form-row {
         grid-template-columns: 1fr;
     }
 
