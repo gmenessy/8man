@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8man - Expertenrat-Simulator</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>&#x2694; 8man</h1>
+            <p class="subtitle">Strategischer Expertenrat-Simulator &middot; Achter-Mann-Regel</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- View 1: Case Creation -->
+        <section id="case-form-view" class="view active">
+            <div class="card">
+                <h2>Neuen Fall anlegen</h2>
+                <p class="description">Beschreiben Sie die Fragestellung, die vom Expertenrat analysiert werden soll.</p>
+                <form id="case-form">
+                    <div class="form-group">
+                        <label for="title">Titel</label>
+                        <input type="text" id="title" name="title" required
+                               placeholder="z.B. Markteintritt in den asiatischen Markt">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Beschreibung / Kontext</label>
+                        <textarea id="description" name="description" rows="4"
+                                  placeholder="Hintergrundinformationen und relevanter Kontext..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="question">Konkrete Fragestellung</label>
+                        <textarea id="question" name="question" rows="3" required
+                                  placeholder="z.B. Sollten wir in den nächsten 12 Monaten in den chinesischen Markt expandieren?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal">Zieldefinition</label>
+                        <textarea id="goal" name="goal" rows="2"
+                                  placeholder="z.B. Fundierte Entscheidungsgrundlage für den Vorstand"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Expertenrat starten</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- View 2: Progress -->
+        <section id="progress-view" class="view">
+            <div class="card">
+                <h2>Beratung läuft...</h2>
+                <div class="phase-tracker">
+                    <div class="phase-step" data-phase="ANALYSIS">
+                        <div class="phase-icon">1</div>
+                        <span>Analyse</span>
+                    </div>
+                    <div class="phase-connector"></div>
+                    <div class="phase-step" data-phase="CONSENSUS">
+                        <div class="phase-icon">2</div>
+                        <span>Konsens</span>
+                    </div>
+                    <div class="phase-connector"></div>
+                    <div class="phase-step" data-phase="DISSENT">
+                        <div class="phase-icon">3</div>
+                        <span>Dissens</span>
+                    </div>
+                    <div class="phase-connector"></div>
+                    <div class="phase-step" data-phase="SYNTHESIS">
+                        <div class="phase-icon">4</div>
+                        <span>Synthese</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p id="progress-text" class="progress-text">Initialisierung...</p>
+                <div id="agents-panel" class="agents-panel"></div>
+            </div>
+        </section>
+
+        <!-- View 3: Results -->
+        <section id="results-view" class="view">
+            <div class="results-header">
+                <h2>Ergebnis des Expertenrats</h2>
+                <button class="btn btn-secondary" id="new-case-btn">Neuer Fall</button>
+            </div>
+
+            <!-- Summary -->
+            <div class="card result-card">
+                <h3>Zusammenfassung</h3>
+                <div id="result-summary" class="result-content"></div>
+            </div>
+
+            <!-- Consensus Score -->
+            <div class="card result-card">
+                <h3>Konsensgrad</h3>
+                <div class="consensus-meter">
+                    <div class="consensus-bar" id="consensus-bar"></div>
+                    <span class="consensus-label" id="consensus-label">0%</span>
+                </div>
+            </div>
+
+            <!-- Pro/Contra -->
+            <div class="two-col">
+                <div class="card result-card pro-card">
+                    <h3>Pro-Argumente</h3>
+                    <ul id="result-pro"></ul>
+                </div>
+                <div class="card result-card contra-card">
+                    <h3>Contra-Argumente</h3>
+                    <ul id="result-contra"></ul>
+                </div>
+            </div>
+
+            <!-- Eighth Man Challenge -->
+            <div class="card result-card eighth-man-card">
+                <h3>&#x2694; Achter Mann - Kernkritik</h3>
+                <div id="result-eighth-man" class="result-content"></div>
+            </div>
+
+            <!-- Risks -->
+            <div class="card result-card">
+                <h3>Risiken</h3>
+                <ul id="result-risks"></ul>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="card result-card">
+                <h3>Empfehlungen</h3>
+                <ol id="result-recommendations"></ol>
+            </div>
+
+            <!-- Phase Details (Accordion) -->
+            <div class="card result-card">
+                <h3>Detaillierte Phasenergebnisse</h3>
+                <div id="phase-details"></div>
+            </div>
+        </section>
+
+        <!-- Error View -->
+        <section id="error-view" class="view">
+            <div class="card error-card">
+                <h2>Fehler</h2>
+                <p id="error-message"></p>
+                <button class="btn btn-primary" id="retry-btn">Erneut versuchen</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>8man Expertenrat-Simulator &middot; Basierend auf der Tenth Man Rule</p>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
