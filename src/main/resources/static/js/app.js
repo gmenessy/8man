@@ -18,7 +18,15 @@ var App = (function() {
             title: document.getElementById('title').value,
             description: document.getElementById('description').value,
             question: document.getElementById('question').value,
-            goal: document.getElementById('goal').value
+            goal: document.getElementById('goal').value,
+            category: document.getElementById('category').value,
+            priority: document.getElementById('priority').value,
+            industry: document.getElementById('industry').value,
+            stakeholders: document.getElementById('stakeholders').value,
+            constraints: document.getElementById('constraints').value,
+            timeframe: document.getElementById('timeframe').value,
+            budget: document.getElementById('budget').value,
+            background: document.getElementById('background').value
         };
 
         Api.createCase(caseData)

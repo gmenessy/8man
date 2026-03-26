@@ -11,6 +11,14 @@ public class Case {
     private String description;
     private String question;
     private String goal;
+    private String category;       // z.B. Strategie, Technologie, Finanzen, Recht, Personal
+    private String industry;       // Branche / Sektor
+    private String stakeholders;   // Betroffene Parteien / Stakeholder
+    private String constraints;    // Rahmenbedingungen und Einschränkungen
+    private String timeframe;      // Zeitrahmen / Dringlichkeit
+    private String priority;       // hoch, mittel, niedrig
+    private String budget;         // Budget / Ressourcen (optional)
+    private String background;     // Zusätzliche Hintergrundinformationen
     private long createdAt;
 
     public Case() {
@@ -33,6 +41,14 @@ public class Case {
         if (map.containsKey("description")) c.description = map.get("description");
         if (map.containsKey("question")) c.question = map.get("question");
         if (map.containsKey("goal")) c.goal = map.get("goal");
+        if (map.containsKey("category")) c.category = map.get("category");
+        if (map.containsKey("industry")) c.industry = map.get("industry");
+        if (map.containsKey("stakeholders")) c.stakeholders = map.get("stakeholders");
+        if (map.containsKey("constraints")) c.constraints = map.get("constraints");
+        if (map.containsKey("timeframe")) c.timeframe = map.get("timeframe");
+        if (map.containsKey("priority")) c.priority = map.get("priority");
+        if (map.containsKey("budget")) c.budget = map.get("budget");
+        if (map.containsKey("background")) c.background = map.get("background");
         return c;
     }
 
@@ -46,6 +62,22 @@ public class Case {
     public void setQuestion(String question) { this.question = question; }
     public String getGoal() { return goal; }
     public void setGoal(String goal) { this.goal = goal; }
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+    public String getIndustry() { return industry; }
+    public void setIndustry(String industry) { this.industry = industry; }
+    public String getStakeholders() { return stakeholders; }
+    public void setStakeholders(String stakeholders) { this.stakeholders = stakeholders; }
+    public String getConstraints() { return constraints; }
+    public void setConstraints(String constraints) { this.constraints = constraints; }
+    public String getTimeframe() { return timeframe; }
+    public void setTimeframe(String timeframe) { this.timeframe = timeframe; }
+    public String getPriority() { return priority; }
+    public void setPriority(String priority) { this.priority = priority; }
+    public String getBudget() { return budget; }
+    public void setBudget(String budget) { this.budget = budget; }
+    public String getBackground() { return background; }
+    public void setBackground(String background) { this.background = background; }
     public long getCreatedAt() { return createdAt; }
     public void setCreatedAt(long createdAt) { this.createdAt = createdAt; }
 
@@ -56,6 +88,14 @@ public class Case {
             "\"description\":" + JsonHelper.escapeJsonString(description) + "," +
             "\"question\":" + JsonHelper.escapeJsonString(question) + "," +
             "\"goal\":" + JsonHelper.escapeJsonString(goal) + "," +
+            "\"category\":" + JsonHelper.escapeJsonString(category) + "," +
+            "\"industry\":" + JsonHelper.escapeJsonString(industry) + "," +
+            "\"stakeholders\":" + JsonHelper.escapeJsonString(stakeholders) + "," +
+            "\"constraints\":" + JsonHelper.escapeJsonString(constraints) + "," +
+            "\"timeframe\":" + JsonHelper.escapeJsonString(timeframe) + "," +
+            "\"priority\":" + JsonHelper.escapeJsonString(priority) + "," +
+            "\"budget\":" + JsonHelper.escapeJsonString(budget) + "," +
+            "\"background\":" + JsonHelper.escapeJsonString(background) + "," +
             "\"createdAt\":" + createdAt +
             "}";
     }

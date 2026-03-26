@@ -32,18 +32,56 @@ public class PromptBuilder {
 
     public String buildAnalysisPrompt(Case caseData) {
         StringBuilder sb = new StringBuilder();
-        sb.append("## Fall zur Analyse\n\n");
+        sb.append("## Akte zur Analyse\n\n");
         sb.append("**Titel:** ").append(caseData.getTitle()).append("\n\n");
-        sb.append("**Beschreibung:** ").append(caseData.getDescription()).append("\n\n");
-        sb.append("**Fragestellung:** ").append(caseData.getQuestion()).append("\n\n");
-        sb.append("**Ziel:** ").append(caseData.getGoal()).append("\n\n");
-        sb.append("Bitte liefere deine erste Analyse und Einschätzung zu diesem Fall. ");
+
+        if (notEmpty(caseData.getCategory())) {
+            sb.append("**Kategorie:** ").append(caseData.getCategory()).append("\n");
+        }
+        if (notEmpty(caseData.getPriority())) {
+            sb.append("**Priorität:** ").append(caseData.getPriority()).append("\n");
+        }
+        if (notEmpty(caseData.getIndustry())) {
+            sb.append("**Branche:** ").append(caseData.getIndustry()).append("\n");
+        }
+        sb.append("\n");
+
+        sb.append("**Beschreibung / Kontext:**\n").append(caseData.getDescription()).append("\n\n");
+
+        if (notEmpty(caseData.getBackground())) {
+            sb.append("**Hintergrundinformationen:**\n").append(caseData.getBackground()).append("\n\n");
+        }
+
+        sb.append("**Konkrete Fragestellung:**\n").append(caseData.getQuestion()).append("\n\n");
+        sb.append("**Zieldefinition:**\n").append(caseData.getGoal()).append("\n\n");
+
+        if (notEmpty(caseData.getStakeholders())) {
+            sb.append("**Beteiligte Stakeholder:**\n").append(caseData.getStakeholders()).append("\n\n");
+        }
+        if (notEmpty(caseData.getConstraints())) {
+            sb.append("**Rahmenbedingungen & Einschränkungen:**\n").append(caseData.getConstraints()).append("\n\n");
+        }
+        if (notEmpty(caseData.getTimeframe())) {
+            sb.append("**Zeitrahmen:**\n").append(caseData.getTimeframe()).append("\n\n");
+        }
+        if (notEmpty(caseData.getBudget())) {
+            sb.append("**Budget / Ressourcen:**\n").append(caseData.getBudget()).append("\n\n");
+        }
+
+        sb.append("---\n\n");
+        sb.append("Bitte liefere deine erste Analyse und Einschätzung zu dieser Akte. ");
         sb.append("Berücksichtige dabei deine spezifische Expertise und Perspektive. ");
+        sb.append("Beziehe die genannten Stakeholder, Rahmenbedingungen und den Zeitrahmen in deine Bewertung ein.\n\n");
         sb.append("Strukturiere deine Antwort mit:\n");
-        sb.append("1. Kernpunkte deiner Analyse\n");
-        sb.append("2. Wichtigste Argumente\n");
-        sb.append("3. Vorläufige Empfehlung\n");
+        sb.append("1. **Kernpunkte** deiner Analyse\n");
+        sb.append("2. **Wichtigste Argumente** (inkl. Chancen und Risiken)\n");
+        sb.append("3. **Auswirkungen** auf die genannten Stakeholder\n");
+        sb.append("4. **Vorläufige Empfehlung**\n");
         return sb.toString();
+    }
+
+    private boolean notEmpty(String s) {
+        return s != null && !s.trim().isEmpty();
     }
 
     public String buildConsensusPrompt(List<AgentResponse> analysisResponses, boolean isEighthMan) {

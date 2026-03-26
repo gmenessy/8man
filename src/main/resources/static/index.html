@@ -18,29 +18,103 @@
         <!-- View 1: Case Creation -->
         <section id="case-form-view" class="view active">
             <div class="card">
-                <h2>Neuen Fall anlegen</h2>
-                <p class="description">Beschreiben Sie die Fragestellung, die vom Expertenrat analysiert werden soll.</p>
+                <h2>Neue Akte anlegen</h2>
+                <p class="description">Beschreiben Sie die Fragestellung, die vom Expertenrat analysiert werden soll. Je detaillierter die Akte, desto fundierter die Analyse.</p>
                 <form id="case-form">
-                    <div class="form-group">
-                        <label for="title">Titel</label>
-                        <input type="text" id="title" name="title" required
-                               placeholder="z.B. Markteintritt in den asiatischen Markt">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Beschreibung / Kontext</label>
-                        <textarea id="description" name="description" rows="4"
-                                  placeholder="Hintergrundinformationen und relevanter Kontext..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="question">Konkrete Fragestellung</label>
-                        <textarea id="question" name="question" rows="3" required
-                                  placeholder="z.B. Sollten wir in den nächsten 12 Monaten in den chinesischen Markt expandieren?"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="goal">Zieldefinition</label>
-                        <textarea id="goal" name="goal" rows="2"
-                                  placeholder="z.B. Fundierte Entscheidungsgrundlage für den Vorstand"></textarea>
-                    </div>
+                    <!-- Pflichtfelder -->
+                    <fieldset class="form-section">
+                        <legend>Kernangaben</legend>
+                        <div class="form-group">
+                            <label for="title">Titel der Akte *</label>
+                            <input type="text" id="title" name="title" required
+                                   placeholder="z.B. Markteintritt in den asiatischen Markt">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="category">Kategorie</label>
+                                <select id="category" name="category">
+                                    <option value="">-- Bitte wählen --</option>
+                                    <option value="Strategie">Strategie</option>
+                                    <option value="Technologie">Technologie</option>
+                                    <option value="Finanzen">Finanzen</option>
+                                    <option value="Recht & Compliance">Recht & Compliance</option>
+                                    <option value="Personal & Organisation">Personal & Organisation</option>
+                                    <option value="Marketing & Vertrieb">Marketing & Vertrieb</option>
+                                    <option value="Produkt & Innovation">Produkt & Innovation</option>
+                                    <option value="Risikomanagement">Risikomanagement</option>
+                                    <option value="Nachhaltigkeit & ESG">Nachhaltigkeit & ESG</option>
+                                    <option value="Sonstiges">Sonstiges</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="priority">Priorität</label>
+                                <select id="priority" name="priority">
+                                    <option value="">-- Bitte wählen --</option>
+                                    <option value="Kritisch">Kritisch</option>
+                                    <option value="Hoch">Hoch</option>
+                                    <option value="Mittel" selected>Mittel</option>
+                                    <option value="Niedrig">Niedrig</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Beschreibung / Kontext *</label>
+                            <textarea id="description" name="description" rows="4" required
+                                      placeholder="Ausgangslage, relevanter Kontext und bisherige Entwicklungen..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question">Konkrete Fragestellung *</label>
+                            <textarea id="question" name="question" rows="3" required
+                                      placeholder="z.B. Sollten wir in den nächsten 12 Monaten in den chinesischen Markt expandieren?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="goal">Zieldefinition *</label>
+                            <textarea id="goal" name="goal" rows="2" required
+                                      placeholder="z.B. Fundierte Entscheidungsgrundlage für den Vorstand"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Erweiterte Details (aufklappbar) -->
+                    <fieldset class="form-section collapsible">
+                        <legend class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+                            Erweiterte Aktendetails <span class="toggle-arrow">&#9660;</span>
+                        </legend>
+                        <div class="collapsible-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="industry">Branche / Sektor</label>
+                                    <input type="text" id="industry" name="industry"
+                                           placeholder="z.B. Automobilindustrie, FinTech, Gesundheitswesen">
+                                </div>
+                                <div class="form-group">
+                                    <label for="timeframe">Zeitrahmen</label>
+                                    <input type="text" id="timeframe" name="timeframe"
+                                           placeholder="z.B. Q3 2026, 6 Monate, sofort">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="stakeholders">Beteiligte Stakeholder</label>
+                                <textarea id="stakeholders" name="stakeholders" rows="2"
+                                          placeholder="z.B. Vorstand, Kunden, Lieferanten, Regulierungsbehörden, Mitarbeiter..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="constraints">Rahmenbedingungen & Einschränkungen</label>
+                                <textarea id="constraints" name="constraints" rows="2"
+                                          placeholder="z.B. Regulatorische Auflagen, technische Limitierungen, bestehende Verträge..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">Budget / Ressourcen</label>
+                                <input type="text" id="budget" name="budget"
+                                       placeholder="z.B. 500.000 EUR, 10 FTE, begrenzt">
+                            </div>
+                            <div class="form-group">
+                                <label for="background">Zusätzliche Hintergrundinformationen</label>
+                                <textarea id="background" name="background" rows="3"
+                                          placeholder="Weitere relevante Daten, Studien, Marktanalysen, historische Entscheidungen..."></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
                     <button type="submit" class="btn btn-primary">Expertenrat starten</button>
                 </form>
             </div>
